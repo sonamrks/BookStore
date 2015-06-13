@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     if params[:search]
-      @products = Product.search(params[:search]).order("created_at DESC")
+      @products = Product.search(params[:search]).order("created_at ASC")
     else
        @products = Product.all
     end

@@ -11,31 +11,30 @@
  
   <div id="banner">
     <%= image_tag("logo.png") %>
-    <%= @page_title || "Our Products" %>
+    <%= @page_title || "Our Books" %>
   </div>
   <div id="columns">
     <div id="side">
 
+      <% unless session[:user_id] %>
+          <%= button_to 'Login as Admin', login_path, method: :get   %>
+      <% end %>
 
+      <% if session[:user_id] %>
+          <%= button_to 'Logout', logout_path, method: :delete   %>
+      <% end %>
 
       <div id='cart'>
         <%= render @cart %>
       </div>
 
-      <ul>
-        <li><a href="http://www....">Home</a></li>
-        <li><a href="http://www..../faq">Questions</a></li>
-        <li><a href="http://www..../news">News</a></li>
-        <li><a href="http://www..../contact">Contact</a></li>
-      </ul>
-
       <% if session[:user_id] %>
           <ul>
             <li><%= link_to 'Orders',   orders_path   %></li>
             <li><%= link_to 'Products', products_path %></li>
+            <li><%= link_to 'Shopper', shopper_path %></li>
             <li><%= link_to 'Users',    users_path    %></li>
           </ul>
-          <%= button_to 'Logout', logout_path, method: :delete   %>
       <% end %>
 
     </div>
